@@ -2,14 +2,16 @@
 if (navigator.geolocation) {
     navigator.geolocation.watchPosition(locationCallback, locationErrorCallback, {maximumAge: 0, enableHighAccuracy: true, timeout: 10000});
 } else {
-    $('#error-alert').addClass('show');
+    window.alert("Oh nein. Das geht anscheinend auf deinem Handy nicht.. Nimm meins :)");
 }
 
 function locationErrorCallback(error) {
     console.log("ERROR :(");
     console.log(error);
-    $('#error-alert').addClass('show');
+        window.location = "game.html";
 }
+
+let counter = 0;
 
 function locationCallback(position) {
     console.log("Moin");
@@ -23,6 +25,15 @@ function locationCallback(position) {
     let distance = distanceInKmBetweenEarthCoordinates(lat, lon, goalLat, goalLon) * 1000;
 
     $("#distance").text("Noch " + distance.toFixed(1) + " m (±" + accuracy.toFixed(0) + " m)");
+
+    if (distance <= 5) {
+        counter = counter + 1;
+        if (counter > 3) {
+            window.location = "game.html";
+        }
+    } else {
+        counter = 0;
+    }
 }
 
 function degreesToRadians(degrees) {
