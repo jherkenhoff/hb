@@ -33,7 +33,6 @@ function locationCallback(position) {
     } else {
         counter = 0;
     }
-        $("#moin").text("Counter " + counter);
 }
 
 function degreesToRadians(degrees) {
