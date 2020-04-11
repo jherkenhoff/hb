@@ -8,7 +8,6 @@ if (navigator.geolocation) {
 function locationErrorCallback(error) {
     console.log("ERROR :(");
     console.log(error);
-        window.location = "game.html";
 }
 
 let counter = 0;
@@ -29,11 +28,12 @@ function locationCallback(position) {
     if (distance <= 5) {
         counter = counter + 1;
         if (counter > 3) {
-            window.location = "game.html";
+            window.location = "found.html";
         }
     } else {
         counter = 0;
     }
+        $("#moin").text("Counter " + counter);
 }
 
 function degreesToRadians(degrees) {
